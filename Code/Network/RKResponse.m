@@ -236,8 +236,10 @@ return __VA_ARGS__;                                                             
 {
     RKResponseIgnoreDelegateIfCancelled();
     _failureError = [error retain];
+    [_request retain];
     [_request invalidateTimeoutTimer];
     [_request didFailLoadWithError:_failureError];
+    [_request release];
 }
 
 - (NSInputStream *)connection:(NSURLConnection *)connection needNewBodyStream:(NSURLRequest *)request
